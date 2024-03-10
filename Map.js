@@ -10,18 +10,11 @@ const MapFunction = (arquivo) => {
   });
   const palavras = conteudo.split(/\n/);
   for (let i = 0; i < palavras.length; i++) {
-    fs.appendFileSync(PATH_INTERMEDIARIO, `${palavras[i]} 1`, (err) => {
+    fs.appendFileSync(PATH_INTERMEDIARIO, `${palavras[i]} 1\n`, (err) => {
       if (err) {
         throw new Error("Erro ao escrever o arquivo: " + err.message);
       }
     });
-    if (i !== palavras.length - 1) {
-      fs.appendFileSync(PATH_INTERMEDIARIO, "\n", (err) => {
-        if (err) {
-          throw new Error("Erro ao escrever o arquivo: " + err.message);
-        }
-      });
-    }
   }
 };
 

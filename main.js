@@ -1,7 +1,12 @@
 const { MapFunction } = require("./Map");
+const ReduceFunction = require("./Reduce");
+const geracao = require("./geracao");
+const {TOTAL_ARQUIVOS} = require("./variaveis");
 
-MapFunction('./arquivo0.txt');
-MapFunction('./arquivo1.txt');
-MapFunction('./arquivo2.txt');
-MapFunction('./arquivo3.txt');
-MapFunction('./arquivo4.txt');
+geracao();
+
+for(let i = 0; i < TOTAL_ARQUIVOS; i++) {
+    MapFunction(`./arquivo${i}.txt`);
+}
+
+ReduceFunction();
