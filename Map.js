@@ -1,6 +1,6 @@
 const fs = require("fs");
 
-const PATH_INTERMEDIARIO = './intermediario.txt';
+const PATH_INTERMEDIARIO = "./intermediario.txt";
 
 const MapFunction = (arquivo) => {
   fs.writeFileSync(PATH_INTERMEDIARIO, "", (err) => {
@@ -30,4 +30,4 @@ const MapFunction = (arquivo) => {
   }
 };
 
-MapFunction("./arquivo0.txt");
+module.exports = { MapFunction };
