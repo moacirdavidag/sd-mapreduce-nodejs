@@ -1,5 +1,5 @@
-const TOTAL_ARQUIVOS = 5;
-const MAX_PALAVRAS = 5;
+const TOTAL_ARQUIVOS = 10;
+const MAX_PALAVRAS = 6000;
 const MIN_CARACTERES = 3;
 const MAX_CARACTERES = 5;
 const PATH_INTERMEDIARIO = "./intermediario.txt";

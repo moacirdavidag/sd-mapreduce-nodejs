@@ -29,7 +29,7 @@ const geracao = () => {
     MIN_CARACTERES,
     MAX_CARACTERES
   ) => {
-    const letras = "abcdefghijklmnopqrstuvwxyz";
+    const letras = "abcde";
     const gerarPalavra = () => {
       let TAMANHO_PALAVRA = Math.floor(
         Math.random() * (MAX_CARACTERES - MIN_CARACTERES + 1) + MIN_CARACTERES

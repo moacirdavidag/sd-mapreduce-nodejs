@@ -3,6 +3,7 @@ const fs = require("fs");
 const { PATH_INTERMEDIARIO, PATH_FINAL } = require("./variaveis");
 
 const ReduceFunction = () => {
+  console.log("Chamou reduce")
   fs.writeFileSync(PATH_FINAL, "", (err) => {
     if (err) {
       throw new Error("Erro ao escrever o arquivo: " + err.message);

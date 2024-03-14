@@ -1,4 +1,5 @@
-const fs = require("fs");
+const { workerData, parentPort } = require('worker_threads');
+const fs = require('fs');
 
 const PATH_INTERMEDIARIO = "./intermediario.txt";
 
@@ -18,4 +19,5 @@ const MapFunction = (arquivo) => {
   }
 };
 
-module.exports = { MapFunction };
+MapFunction(workerData.arquivo);
+parentPort.postMessage({ arquivo: workerData.arquivo, status: 'concluido' });

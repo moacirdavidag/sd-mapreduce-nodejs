@@ -1,12 +1,29 @@
-const { MapFunction } = require("./Map");
-const ReduceFunction = require("./Reduce");
+const { Worker } = require("worker_threads");
 const geracao = require("./geracao");
-const {TOTAL_ARQUIVOS} = require("./variaveis");
+const { TOTAL_ARQUIVOS } = require("./variaveis");
+const ReduceFunction = require("./Reduce");
 
 geracao();
 
-for(let i = 0; i < TOTAL_ARQUIVOS; i++) {
-    MapFunction(`./arquivo${i}.txt`);
-}
+let threadsConcluidas = 1;
 
-ReduceFunction();
+for (let i = 0; i < TOTAL_ARQUIVOS; i++) {
+  const worker = new Worker("./Map.js", {
+    workerData: { arquivo: `./arquivo${i}.txt` },
+  });
+  worker.on("message", (message) => {
+    console.log(`Arquivo ${message.arquivo} processado`);
+    threadsConcluidas++;
+    if (threadsConcluidas === TOTAL_ARQUIVOS) {
+      ReduceFunction();
+    }
+  });   
+  worker.on("error", (err) => {
+    console.error(err);
+  });
+  worker.on("exit", (code) => {
+    if (code !== 0) {
+      console.error(new Error(`Worker stopped with exit code ${code}`));
+    }
+  });
+}
